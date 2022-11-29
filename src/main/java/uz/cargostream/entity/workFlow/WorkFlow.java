@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uz.cargostream.entity.template.EntityClass;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @AllArgsConstructor
@@ -13,7 +14,12 @@ import javax.persistence.Entity;
 @Data
 @Entity(name = "workflows")
 public class WorkFlow extends EntityClass {
+    @Column(nullable = false)
     private String orderNumber;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String description;
 }

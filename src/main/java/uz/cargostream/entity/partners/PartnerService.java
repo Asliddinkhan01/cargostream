@@ -1,11 +1,11 @@
-package uz.cargostream.entity.contacts;
+package uz.cargostream.entity.partners;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ContactService {
+public class PartnerService {
 
-    private final ContactRepository contactRepository;
+    private final PartnerRepository partnerRepository;
 }

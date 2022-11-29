@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.entity.news.dto.NewsDto;
 
 @RestController
-@RequestMapping
+@RequestMapping("/news")
 @RequiredArgsConstructor
 public class NewsController {
 

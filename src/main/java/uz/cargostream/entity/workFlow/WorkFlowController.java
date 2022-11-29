@@ -2,35 +2,40 @@ package uz.cargostream.entity.workFlow;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
+import uz.cargostream.entity.workFlow.dto.AddWorkflowDto;
+import uz.cargostream.entity.workFlow.dto.EditWorkflow;
+import uz.cargostream.entity.workFlow.dto.WorkflowDto;
 
 @RestController
-@RequestMapping
+@RequestMapping("/workflow")
 @RequiredArgsConstructor
 public class WorkFlowController {
 
     private final WorkFlowService workFlowService;
 
-    @GetMapping("/{uuid}")
-    public HttpEntity<?> getWorkFlowById(@PathVariable UUID uuid) {
-        return workFlowService.getWorkFlow(uuid);
+    @GetMapping("/get")
+    public HttpEntity<?> getAllWorkflow() {
+        return workFlowService.getAllWorkflow();
     }
 
-    @PostMapping
-    public HttpEntity<?> addWorkFlow(@RequestBody WorkFlow workFlow) {
-        return workFlowService.addWorkFlow(workFlow);
+    @PostMapping("/get")
+    public HttpEntity<?> getWorkFlowById(@RequestBody WorkflowDto workflowDto) {
+        return workFlowService.getWorkFlow(workflowDto.getWorkflowId());
     }
 
-    @DeleteMapping("/{uuid}")
-    public HttpEntity<?> delete(@PathVariable UUID uuid) {
-        return workFlowService.deleteById(uuid);
+    @PostMapping("/add")
+    public HttpEntity<?> addWorkFlow(@RequestBody AddWorkflowDto addWorkflowDto) {
+        return workFlowService.addWorkFlow(addWorkflowDto);
     }
 
-    @PutMapping("/{uuid}")
-    public HttpEntity<?> editWorkFlow(@PathVariable UUID uuid, @RequestBody WorkFlow workFlow) {
-        return workFlowService.editWorkFlow(uuid, workFlow);
+    @DeleteMapping("/delete")
+    public HttpEntity<?> delete(@RequestBody WorkflowDto workflowDto) {
+        return workFlowService.deleteById(workflowDto.getWorkflowId());
+    }
+
+    @PutMapping("/edit")
+    public HttpEntity<?> editWorkFlow(@RequestBody EditWorkflow editWorkflow) {
+        return workFlowService.editWorkFlow(editWorkflow.getWorkflowId(), editWorkflow);
     }
 }

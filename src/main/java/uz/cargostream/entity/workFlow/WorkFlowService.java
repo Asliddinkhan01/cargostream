@@ -6,7 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.cargostream.common.ApiResponse;
+import uz.cargostream.entity.workFlow.dto.AddWorkflowDto;
+import uz.cargostream.entity.workFlow.dto.EditWorkflow;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,32 +22,40 @@ public class WorkFlowService {
 
     public HttpEntity<?> getWorkFlow(UUID uuid) {
         Optional<WorkFlow> byId = workFlowRepository.findById(uuid);
-        if (byId.isPresent()) {
-            return new ResponseEntity<>(new ApiResponse("Successfully", true, byId), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(new ApiResponse("WorkFlow not found", true), HttpStatus.OK);
+        return byId.map(workFlow -> new ResponseEntity<>(new ApiResponse("Successfully", true, workFlow), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(new ApiResponse("WorkFlow not found", false), HttpStatus.NOT_FOUND));
     }
 
-    public HttpEntity<?> addWorkFlow(WorkFlow workFlow) {
+    public HttpEntity<?> addWorkFlow(AddWorkflowDto workFlow) {
         WorkFlow newWorkFlow = new WorkFlow();
         newWorkFlow.setOrderNumber(workFlow.getOrderNumber());
         newWorkFlow.setTitle(workFlow.getTitle());
         newWorkFlow.setDescription(workFlow.getDescription());
-        workFlowRepository.save(newWorkFlow);
-        return new ResponseEntity<>(new ApiResponse("Successfully added", true, newWorkFlow), HttpStatus.CREATED);
+        try {
+            workFlowRepository.save(newWorkFlow);
+            return new ResponseEntity<>(new ApiResponse("Successfully added", true, newWorkFlow), HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(new ApiResponse("Something went wrong", false), HttpStatus.CONFLICT);
+        }
     }
 
-    public HttpEntity<?> editWorkFlow(UUID id, WorkFlow workFlow) {
+    public HttpEntity<?> editWorkFlow(UUID id, EditWorkflow workFlow) {
         Optional<WorkFlow> byId = workFlowRepository.findById(id);
         if (byId.isPresent()) {
-            WorkFlow editWorkFlow = new WorkFlow();
+            WorkFlow editWorkFlow = byId.get();
             editWorkFlow.setOrderNumber(workFlow.getOrderNumber());
             editWorkFlow.setTitle(workFlow.getTitle());
             editWorkFlow.setDescription(workFlow.getDescription());
-            WorkFlow save = workFlowRepository.save(editWorkFlow);
-            return new ResponseEntity<>(new ApiResponse("Successfully edited", true, save), HttpStatus.OK);
+            try {
+                workFlowRepository.save(editWorkFlow);
+                return new ResponseEntity<>(new ApiResponse("Successfully edited", true), HttpStatus.OK);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResponseEntity<>(new ApiResponse("Something went wrong", false), HttpStatus.CONFLICT);
+            }
         }
-        return new ResponseEntity<>(new ApiResponse("Error", false), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse("Workflow not found", false), HttpStatus.NOT_FOUND);
     }
 
     public HttpEntity<?> deleteById(UUID uuid) {
@@ -52,9 +63,13 @@ public class WorkFlowService {
             workFlowRepository.deleteById(uuid);
             return new ResponseEntity<>(new ApiResponse("Successfully deleted", true), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(new ApiResponse("Error", false), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ApiResponse("Workflow not found", false), HttpStatus.NOT_FOUND);
         }
     }
 
 
+    public HttpEntity<?> getAllWorkflow() {
+        List<WorkFlow> all = workFlowRepository.findAll();
+        return new ResponseEntity<>(new ApiResponse("Success", true, all), HttpStatus.OK);
+    }
 }
