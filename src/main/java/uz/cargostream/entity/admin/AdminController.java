@@ -12,7 +12,7 @@ import uz.cargostream.entity.admin.dto.LoginDto;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("${app.domain}/admin")
 @RequiredArgsConstructor
 public class AdminController {
     private final AdminService adminService;

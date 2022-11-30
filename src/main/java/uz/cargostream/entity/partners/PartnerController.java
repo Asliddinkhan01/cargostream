@@ -9,7 +9,7 @@ import uz.cargostream.entity.partners.dto.PartnerDto;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/partner")
+@RequestMapping("${app.domain}/partner")
 @RequiredArgsConstructor
 public class PartnerController {
     private final PartnerService partnerService;

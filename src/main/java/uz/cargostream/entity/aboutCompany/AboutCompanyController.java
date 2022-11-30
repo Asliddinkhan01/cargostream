@@ -11,7 +11,7 @@ import uz.cargostream.entity.aboutCompany.dto.EditAboutCompanyDto;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/company")
+@RequestMapping("${app.domain}/company")
 @RequiredArgsConstructor
 public class AboutCompanyController {
 

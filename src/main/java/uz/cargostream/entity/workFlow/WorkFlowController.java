@@ -8,13 +8,13 @@ import uz.cargostream.entity.workFlow.dto.EditWorkflow;
 import uz.cargostream.entity.workFlow.dto.WorkflowDto;
 
 @RestController
-@RequestMapping("/workflow")
+@RequestMapping("${app.domain}/workflow")
 @RequiredArgsConstructor
 public class WorkFlowController {
 
     private final WorkFlowService workFlowService;
 
-    @GetMapping("/get")
+    @GetMapping
     public HttpEntity<?> getAllWorkflow() {
         return workFlowService.getAllWorkflow();
     }
@@ -29,12 +29,12 @@ public class WorkFlowController {
         return workFlowService.addWorkFlow(addWorkflowDto);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping
     public HttpEntity<?> delete(@RequestBody WorkflowDto workflowDto) {
         return workFlowService.deleteById(workflowDto.getWorkflowId());
     }
 
-    @PutMapping("/edit")
+    @PutMapping
     public HttpEntity<?> editWorkFlow(@RequestBody EditWorkflow editWorkflow) {
         return workFlowService.editWorkFlow(editWorkflow.getWorkflowId(), editWorkflow);
     }

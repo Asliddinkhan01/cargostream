@@ -9,7 +9,7 @@ import uz.cargostream.entity.news.dto.NewsDto;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/news")
+@RequestMapping("${app.domain}/news")
 @RequiredArgsConstructor
 public class NewsController {
 
