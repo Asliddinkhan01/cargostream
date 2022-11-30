@@ -15,9 +15,9 @@ import javax.persistence.OneToOne;
 @Data
 @Entity(name = "partners")
 public class Partner extends EntityClass {
-    @Column(nullable = false)
     @OneToOne
     private Photo photo;
+
     @Column(nullable = false)
     private String siteLink;
 }

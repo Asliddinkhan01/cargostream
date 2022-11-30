@@ -52,14 +52,4 @@ public class NewsService {
         }
     }
 
-//    public HttpEntity<?> editNews(UUID uuid, News news,MultipartFile photo){
-//        Optional<News> byId = newsRepository.findById(uuid);
-//
-//        if (byId.isPresent()){
-//            News editNews = byId.get();
-//            editNews.setText(news.getText());
-//            editNews.setTitle(news.getTitle());
-//        }
-//    }
-
 }

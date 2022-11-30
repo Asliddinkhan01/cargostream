@@ -1,6 +1,7 @@
 package uz.cargostream.entity.partners;
 
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,14 @@ import uz.cargostream.entity.photo.PhotoService;
 
 import java.util.Optional;
 import java.util.UUID;
+=======
+import org.springframework.stereotype.Service;
+>>>>>>> origin/main
 
 @Service
 @RequiredArgsConstructor
 public class PartnerService {
+<<<<<<< HEAD
     private final PartnerRepository partnerRepository;
     private final PhotoService photoService;
 
@@ -44,4 +49,8 @@ public class PartnerService {
         return new ResponseEntity<>(new ApiResponse("Error maybe partner not found", false), HttpStatus.OK);
     }
 
+=======
+
+    private final PartnerRepository partnerRepository;
+>>>>>>> origin/main
 }
