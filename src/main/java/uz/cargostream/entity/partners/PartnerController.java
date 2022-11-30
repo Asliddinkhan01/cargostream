@@ -24,8 +24,11 @@ public class PartnerController {
 
     @DeleteMapping
     public HttpEntity<?> deletePartner(@RequestBody PartnerUuidDto partnerUuidDto) {
-        return partnerService.deletePartner(partnerUuidDto.getPartner());
+        return partnerService.deletePartner(partnerUuidDto.getPartnerId());
     }
 
-
+    @GetMapping
+    public HttpEntity<?> getAllPartner(){
+        return partnerService.getAllPartner();
+    }
 }

@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.common.ApiResponse;
 import uz.cargostream.entity.partners.dto.PartnerDto;
+import uz.cargostream.entity.partners.projection.PartnerProjection;
 import uz.cargostream.entity.photo.PhotoService;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,5 +36,10 @@ public class PartnerService {
             return new ResponseEntity<>(new ApiResponse("Successfully deleted", true), HttpStatus.OK);
         }
         return new ResponseEntity<>(new ApiResponse("Error maybe partner not found", false), HttpStatus.OK);
+    }
+
+    public HttpEntity<?> getAllPartner() {
+        List<PartnerProjection> allPartner = partnerRepository.getAllPartner();
+        return new ResponseEntity<>(new ApiResponse("Success", true, allPartner), HttpStatus.OK);
     }
 }

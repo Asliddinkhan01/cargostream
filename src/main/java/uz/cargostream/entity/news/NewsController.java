@@ -5,6 +5,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.entity.news.dto.NewsDto;
+import uz.cargostream.entity.news.dto.NewsUuidDto;
 
 import java.util.UUID;
 
@@ -23,17 +24,15 @@ public class NewsController {
         return newsService.addNews(newsDto, photo);
     }
 
-    @GetMapping("/{uuid}")
-    public HttpEntity<?> getNews(@PathVariable UUID uuid) {
-        return newsService.getNews(uuid);
+    @GetMapping
+    public HttpEntity<?> getNews(@RequestBody NewsUuidDto newsUuidDto) {
+        return newsService.getNews(newsUuidDto.getNewsId());
     }
 
-    @DeleteMapping("/{uuid}")
-    public HttpEntity<?> deleteNews(@PathVariable UUID uuid) {
-        return newsService.deleteNews(uuid);
+    @DeleteMapping
+    public HttpEntity<?> deleteNews(@RequestBody NewsUuidDto newsUuidDto) {
+        return newsService.deleteNews(newsUuidDto.getNewsId());
     }
-
-
 
 
 }

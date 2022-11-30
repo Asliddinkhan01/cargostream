@@ -1,4 +1,4 @@
-package uz.cargostream.entity.partners.dto;
+package uz.cargostream.entity.news.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -12,10 +12,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PartnerUuidDto {
+public class NewsUuidDto {
 
     @NotNull(message = "Field cannot be null")
     @NotBlank(message = "Field cannot be blank")
-    private UUID partnerId;
-
+    private UUID newsId;
 }

@@ -21,7 +21,7 @@ public class NewsService {
 
     private final NewsRepository newsRepository;
     private final PhotoService photoService;
-    private final PhotoRepository photoRepository;
+
 
     public HttpEntity<?> addNews(NewsDto newsDto, MultipartFile photo) {
         News news = new News();
