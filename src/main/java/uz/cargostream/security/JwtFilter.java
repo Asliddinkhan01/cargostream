@@ -19,7 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
     private final JwtProvider jwtProvider;
-    private final AdminRepository userRepository;
+    private final AdminRepository adminRepository;
 
 
     @Override
@@ -31,7 +31,7 @@ public class JwtFilter extends OncePerRequestFilter {
             String phoneNumber = jwtProvider.getPhoneNumber(authorization);
             if (phoneNumber != null) {
 
-                Optional<Admin> optionalUser = userRepository.findByPhoneNumber(phoneNumber);
+                Optional<Admin> optionalUser = adminRepository.findByPhoneNumber(phoneNumber);
 
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = null;
                 if (optionalUser.isPresent()) {

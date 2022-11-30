@@ -7,6 +7,4 @@ import java.util.UUID;
 
 public interface AdminRepository extends JpaRepository<Admin, UUID> {
     Optional<Admin> findByPhoneNumber(String phoneNumber);
-
-    boolean existsByPhoneNumber(String phoneNumber);
 }

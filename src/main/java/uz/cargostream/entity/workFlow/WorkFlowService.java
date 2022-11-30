@@ -19,13 +19,6 @@ public class WorkFlowService {
 
     private final WorkFlowRepository workFlowRepository;
 
-
-    public HttpEntity<?> getWorkFlow(UUID uuid) {
-        Optional<WorkFlow> byId = workFlowRepository.findById(uuid);
-        return byId.map(workFlow -> new ResponseEntity<>(new ApiResponse("Successfully", true, workFlow), HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(new ApiResponse("WorkFlow not found", false), HttpStatus.NOT_FOUND));
-    }
-
     public HttpEntity<?> addWorkFlow(AddWorkflowDto workFlow) {
         WorkFlow newWorkFlow = new WorkFlow();
         newWorkFlow.setOrderNumber(workFlow.getOrderNumber());
