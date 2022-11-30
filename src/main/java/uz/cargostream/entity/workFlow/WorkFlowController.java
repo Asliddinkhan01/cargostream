@@ -19,12 +19,7 @@ public class WorkFlowController {
         return workFlowService.getAllWorkflow();
     }
 
-    @PostMapping("/get")
-    public HttpEntity<?> getWorkFlowById(@RequestBody WorkflowDto workflowDto) {
-        return workFlowService.getWorkFlow(workflowDto.getWorkflowId());
-    }
-
-    @PostMapping("/add")
+    @PostMapping
     public HttpEntity<?> addWorkFlow(@RequestBody AddWorkflowDto addWorkflowDto) {
         return workFlowService.addWorkFlow(addWorkflowDto);
     }
