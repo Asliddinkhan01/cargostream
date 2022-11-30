@@ -1,7 +1,6 @@
 package uz.cargostream.entity.partners;
 
 import lombok.RequiredArgsConstructor;
-<<<<<<< HEAD
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,18 +12,14 @@ import uz.cargostream.entity.photo.PhotoService;
 
 import java.util.Optional;
 import java.util.UUID;
-=======
-import org.springframework.stereotype.Service;
->>>>>>> origin/main
 
 @Service
 @RequiredArgsConstructor
 public class PartnerService {
-<<<<<<< HEAD
     private final PartnerRepository partnerRepository;
     private final PhotoService photoService;
 
-    public HttpEntity<?> addPartner(MultipartFile photo, PartnerDto partnerDto){
+    public HttpEntity<?> addPartner(MultipartFile photo, PartnerDto partnerDto) {
         Partner partner = new Partner();
         partner.setSiteLink(partnerDto.getSiteLink());
         partner.setPhoto(photoService.savePhoto(photo));
@@ -32,25 +27,20 @@ public class PartnerService {
         return new ResponseEntity<>(new ApiResponse("Successfully added", true), HttpStatus.CREATED);
     }
 
-    public HttpEntity<?> getPartner(UUID uuid){
+    public HttpEntity<?> getPartner(UUID uuid) {
         Optional<Partner> byId = partnerRepository.findById(uuid);
-        if (byId.isPresent()){
-            return new ResponseEntity<>(new ApiResponse("Success", true,byId), HttpStatus.ACCEPTED);
+        if (byId.isPresent()) {
+            return new ResponseEntity<>(new ApiResponse("Success", true, byId), HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>(new ApiResponse("Partner not found", false), HttpStatus.OK);
     }
 
-    public HttpEntity<?> deletePartner(UUID uuid){
+    public HttpEntity<?> deletePartner(UUID uuid) {
         Optional<Partner> byId = partnerRepository.findById(uuid);
-        if (byId.isPresent()){
+        if (byId.isPresent()) {
             partnerRepository.deleteById(uuid);
             return new ResponseEntity<>(new ApiResponse("Successfully deleted", true), HttpStatus.OK);
         }
         return new ResponseEntity<>(new ApiResponse("Error maybe partner not found", false), HttpStatus.OK);
     }
-
-=======
-
-    private final PartnerRepository partnerRepository;
->>>>>>> origin/main
 }
