@@ -5,6 +5,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.entity.partners.dto.PartnerDto;
+import uz.cargostream.entity.partners.dto.PartnerUuidDto;
 
 import java.util.UUID;
 
@@ -20,13 +21,11 @@ public class PartnerController {
         return partnerService.addPartner(photo, partnerDto);
     }
 
-    @GetMapping("/{uuid}")
-    private HttpEntity<?> getPartner(@PathVariable UUID uuid) {
-        return partnerService.getPartner(uuid);
+
+    @DeleteMapping
+    public HttpEntity<?> deletePartner(@RequestBody PartnerUuidDto partnerUuidDto) {
+        return partnerService.deletePartner(partnerUuidDto.getPartner());
     }
 
-    @DeleteMapping("/{uuid}")
-    public HttpEntity<?> deletePartner(@PathVariable UUID uuid) {
-        return partnerService.deletePartner(uuid);
-    }
+
 }

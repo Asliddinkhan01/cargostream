@@ -27,14 +27,6 @@ public class PartnerService {
         return new ResponseEntity<>(new ApiResponse("Successfully added", true), HttpStatus.CREATED);
     }
 
-    public HttpEntity<?> getPartner(UUID uuid) {
-        Optional<Partner> byId = partnerRepository.findById(uuid);
-        if (byId.isPresent()) {
-            return new ResponseEntity<>(new ApiResponse("Success", true, byId), HttpStatus.ACCEPTED);
-        }
-        return new ResponseEntity<>(new ApiResponse("Partner not found", false), HttpStatus.OK);
-    }
-
     public HttpEntity<?> deletePartner(UUID uuid) {
         Optional<Partner> byId = partnerRepository.findById(uuid);
         if (byId.isPresent()) {
