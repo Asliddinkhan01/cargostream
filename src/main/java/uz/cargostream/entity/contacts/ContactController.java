@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.entity.contacts.dto.AddContactDto;
 import uz.cargostream.entity.contacts.dto.EditContactDto;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -24,7 +25,7 @@ public class ContactController {
 
     @PostMapping
     public HttpEntity<?> addContact(
-            @RequestPart("contactDto") AddContactDto contactDto,
+            @RequestPart("contactDto") @Valid AddContactDto contactDto,
             @RequestPart("photo") MultipartFile photo
     ) {
         return contactService.addContact(contactDto, photo);
@@ -32,7 +33,7 @@ public class ContactController {
 
     @PutMapping
     public HttpEntity<?> editContact(
-            @RequestPart("contactDto") EditContactDto contactDto,
+            @RequestPart("contactDto") @Valid EditContactDto contactDto,
             @RequestPart("photo") MultipartFile photo
     ) {
         return contactService.editContact(contactDto, photo);
