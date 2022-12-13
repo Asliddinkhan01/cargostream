@@ -7,9 +7,9 @@ import java.util.UUID;
 
 public interface ServiceProjection {
 
-    UUID getServicesId();
+    UUID getServiceId();
 
-    @Value("#{@serviceRepository.getServicesByServiceId(target.seriviceId)}")
+    @Value("#{@serviceRepository.getServicesByServiceId(target.serviceId)}")
     List<String> getServices();
 
     String getOriginalName();
