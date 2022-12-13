@@ -1,14 +1,18 @@
 package uz.cargostream.entity.service.projection;
 
-import uz.cargostream.entity.photo.projection.PhotoProjection;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface ServiceProjection {
-    UUID getServiceId();
 
+    UUID getServicesId();
+
+    @Value("#{@serviceRepository.getServicesByServiceId(target.seriviceId)}")
     List<String> getServices();
 
-    PhotoProjection getPhoto();
+    String getOriginalName();
+
+    String getUrlName();
 }
