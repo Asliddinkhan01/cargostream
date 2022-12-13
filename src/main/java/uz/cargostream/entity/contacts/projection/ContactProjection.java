@@ -1,10 +1,11 @@
 package uz.cargostream.entity.contacts.projection;
 
-import uz.cargostream.entity.photo.projection.PhotoProjection;
-
 import java.util.List;
+import java.util.UUID;
 
 public interface ContactProjection {
+
+    UUID getContactId();
 
     List<String> getNumbers();
 
@@ -12,5 +13,8 @@ public interface ContactProjection {
 
     String getLocation();
 
-    PhotoProjection getPhoto();
+    String getOriginalName();
+
+    String getUrlName();
+//    PhotoProjection getPhoto();
 }

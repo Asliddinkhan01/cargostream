@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity(name = "services")
-public class Service extends EntityClass {
+public class Services extends EntityClass {
 
     @ElementCollection(fetch = FetchType.LAZY)
     private List<String> services;

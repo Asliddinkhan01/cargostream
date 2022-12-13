@@ -5,6 +5,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.entity.news.dto.NewsDto;
+import uz.cargostream.entity.news.dto.NewsEditDto;
 import uz.cargostream.entity.news.dto.NewsUuidDto;
 
 import java.util.UUID;
@@ -25,13 +26,24 @@ public class NewsController {
     }
 
     @GetMapping
-    public HttpEntity<?> getNews(@RequestBody NewsUuidDto newsUuidDto) {
-        return newsService.getNews(newsUuidDto.getNewsId());
+    public HttpEntity<?> getNewsById(@RequestBody NewsUuidDto newsUuidDto) {
+        return newsService.getNewsById(newsUuidDto.getNewsId());
     }
 
     @DeleteMapping
     public HttpEntity<?> deleteNews(@RequestBody NewsUuidDto newsUuidDto) {
         return newsService.deleteNews(newsUuidDto.getNewsId());
+    }
+
+    @GetMapping("/getAll")
+    public HttpEntity<?> getAllNews() {
+        return newsService.getAllNews();
+    }
+
+    @PutMapping
+    public HttpEntity<?> editNews(@RequestPart("newsDto") NewsEditDto newsDto,
+                                  @RequestPart("photo") MultipartFile photo) {
+        return newsService.editNews(newsDto, photo);
     }
 
 

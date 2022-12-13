@@ -13,7 +13,7 @@ public class JwtProvider {
     private static final String key = "secretKey";
 
     public String generateToken(String username, Role roles) {
-//                                              expiration time 30 days, we will change later
+//                                              expiration time 5 days, we will change later
         Date expireDate = new Date(System.currentTimeMillis() + expirationTime * 5);
         String token = Jwts
                 .builder()

@@ -25,17 +25,22 @@ public class PartnerService {
         Partner partner = new Partner();
         partner.setSiteLink(partnerDto.getSiteLink());
         partner.setPhoto(photoService.savePhoto(photo));
-        partnerRepository.save(partner);
-        return new ResponseEntity<>(new ApiResponse("Successfully added", true), HttpStatus.CREATED);
+        try {
+            partnerRepository.save(partner);
+            return new ResponseEntity<>(new ApiResponse("Successfully added", true), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse("Something went wrong", false), HttpStatus.CONFLICT);
+        }
     }
 
     public HttpEntity<?> deletePartner(UUID uuid) {
         Optional<Partner> byId = partnerRepository.findById(uuid);
         if (byId.isPresent()) {
+            photoService.deletePhoto(byId.get().getPhoto().getId());
             partnerRepository.deleteById(uuid);
             return new ResponseEntity<>(new ApiResponse("Successfully deleted", true), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new ApiResponse("Error maybe partner not found", false), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse("Error maybe partner not found", false), HttpStatus.NOT_FOUND);
     }
 
     public HttpEntity<?> getAllPartner() {
