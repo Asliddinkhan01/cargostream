@@ -1,15 +1,12 @@
 package uz.cargostream.entity.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.web.server.Http2;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.common.ApiResponse;
-import uz.cargostream.entity.contacts.Contact;
-import uz.cargostream.entity.contacts.dto.EditContactDto;
 import uz.cargostream.entity.photo.PhotoService;
 import uz.cargostream.entity.service.dto.AddServiceDto;
 import uz.cargostream.entity.service.dto.EditServiceDto;
