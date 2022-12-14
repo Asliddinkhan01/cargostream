@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.entity.service.dto.AddServiceDto;
 import uz.cargostream.entity.service.dto.EditServiceDto;
 
+import javax.validation.Valid;
 import java.net.http.HttpClient;
 import java.util.UUID;
 
@@ -20,7 +21,7 @@ public class ServiceController {
 
     @PostMapping
     public HttpEntity<?> addServices(
-            @RequestPart("serviceDto") AddServiceDto serviceDto,
+            @RequestPart("serviceDto") @Valid AddServiceDto serviceDto,
             @RequestPart("photo") MultipartFile photo) {
         return serviceService.addService(serviceDto, photo);
     }
@@ -37,7 +38,7 @@ public class ServiceController {
 
     @PutMapping
     public HttpEntity<?> editServices(
-            @RequestPart("serviceDto") EditServiceDto serviceDto,
+            @RequestPart("serviceDto") @Valid EditServiceDto serviceDto,
             @RequestPart("photo") MultipartFile photo) {
         return serviceService.editContact(serviceDto, photo);
     }

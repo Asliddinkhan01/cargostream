@@ -7,6 +7,8 @@ import uz.cargostream.entity.workFlow.dto.AddWorkflowDto;
 import uz.cargostream.entity.workFlow.dto.EditWorkflow;
 import uz.cargostream.entity.workFlow.dto.WorkflowDto;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("${app.domain}/workflow")
 @RequiredArgsConstructor
@@ -20,17 +22,17 @@ public class WorkFlowController {
     }
 
     @PostMapping
-    public HttpEntity<?> addWorkFlow(@RequestBody AddWorkflowDto addWorkflowDto) {
+    public HttpEntity<?> addWorkFlow( @Valid @RequestBody AddWorkflowDto addWorkflowDto) {
         return workFlowService.addWorkFlow(addWorkflowDto);
     }
 
     @DeleteMapping
-    public HttpEntity<?> delete(@RequestBody WorkflowDto workflowDto) {
+    public HttpEntity<?> delete( @Valid @RequestBody WorkflowDto workflowDto) {
         return workFlowService.deleteById(workflowDto.getWorkflowId());
     }
 
     @PutMapping
-    public HttpEntity<?> editWorkFlow(@RequestBody EditWorkflow editWorkflow) {
+    public HttpEntity<?> editWorkFlow( @Valid @RequestBody EditWorkflow editWorkflow) {
         return workFlowService.editWorkFlow(editWorkflow.getWorkflowId(), editWorkflow);
     }
 }

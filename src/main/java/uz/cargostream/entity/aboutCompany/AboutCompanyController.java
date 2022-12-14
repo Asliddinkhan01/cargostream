@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.entity.aboutCompany.dto.AddAboutCompanyDto;
 import uz.cargostream.entity.aboutCompany.dto.EditAboutCompanyDto;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -24,15 +25,15 @@ public class AboutCompanyController {
 
     @PostMapping()
     public HttpEntity<?> addAboutCompany(
-            @RequestPart("dto") AddAboutCompanyDto dto,
-            @RequestPart("photo") MultipartFile photo
+            @RequestPart("dto") @Valid AddAboutCompanyDto dto,
+            @RequestPart("photo") @Valid MultipartFile photo
     ) {
         return aboutCompanyService.addAboutCompany(dto, photo);
     }
 
     @PutMapping
     public HttpEntity<?> editAboutCompany(
-            @RequestPart("dto") EditAboutCompanyDto dto,
+            @RequestPart("dto") @Valid EditAboutCompanyDto dto,
             @RequestPart("photo") MultipartFile photo
     ) {
         return aboutCompanyService.editAboutCompany(dto, photo);

@@ -8,6 +8,7 @@ import uz.cargostream.entity.news.dto.NewsDto;
 import uz.cargostream.entity.news.dto.NewsEditDto;
 import uz.cargostream.entity.news.dto.NewsUuidDto;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -19,19 +20,19 @@ public class NewsController {
 
     @PostMapping
     public HttpEntity<?> addNews(
-            @RequestPart("newsDto") NewsDto newsDto,
+            @RequestPart("newsDto") @Valid NewsDto newsDto,
             @RequestPart("photo") MultipartFile photo
     ) {
         return newsService.addNews(newsDto, photo);
     }
 
     @GetMapping
-    public HttpEntity<?> getNewsById(@RequestBody NewsUuidDto newsUuidDto) {
+    public HttpEntity<?> getNewsById(@Valid @RequestBody NewsUuidDto newsUuidDto) {
         return newsService.getNewsById(newsUuidDto.getNewsId());
     }
 
     @DeleteMapping
-    public HttpEntity<?> deleteNews(@RequestBody NewsUuidDto newsUuidDto) {
+    public HttpEntity<?> deleteNews( @Valid @RequestBody NewsUuidDto newsUuidDto) {
         return newsService.deleteNews(newsUuidDto.getNewsId());
     }
 
@@ -41,7 +42,7 @@ public class NewsController {
     }
 
     @PutMapping
-    public HttpEntity<?> editNews(@RequestPart("newsDto") NewsEditDto newsDto,
+    public HttpEntity<?> editNews(@RequestPart("newsDto") @Valid NewsEditDto newsDto,
                                   @RequestPart("photo") MultipartFile photo) {
         return newsService.editNews(newsDto, photo);
     }

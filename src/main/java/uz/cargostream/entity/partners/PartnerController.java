@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.entity.partners.dto.PartnerDto;
 import uz.cargostream.entity.partners.dto.PartnerUuidDto;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -16,14 +17,14 @@ public class PartnerController {
     private final PartnerService partnerService;
 
     @PostMapping
-    public HttpEntity<?> addPartner(@RequestPart("partnerDto") PartnerDto partnerDto,
+    public HttpEntity<?> addPartner(@RequestPart("partnerDto")@Valid PartnerDto partnerDto,
                                     @RequestPart("photo") MultipartFile photo) {
         return partnerService.addPartner(photo, partnerDto);
     }
 
 
     @DeleteMapping
-    public HttpEntity<?> deletePartner(@RequestBody PartnerUuidDto partnerUuidDto) {
+    public HttpEntity<?> deletePartner( @Valid @RequestBody PartnerUuidDto partnerUuidDto) {
         return partnerService.deletePartner(partnerUuidDto.getPartnerId());
     }
 

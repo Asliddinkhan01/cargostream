@@ -23,7 +23,7 @@ public class AdminController {
     }
 
     @PostMapping("/add")
-    public HttpEntity<?> addAdmin(@RequestBody LoginDto loginDto) {
+    public HttpEntity<?> addAdmin(@Valid @RequestBody LoginDto loginDto) {
         return adminService.addAdmin(loginDto);
     }
 }
