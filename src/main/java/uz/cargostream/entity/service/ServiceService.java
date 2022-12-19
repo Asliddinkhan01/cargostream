@@ -31,7 +31,8 @@ public class ServiceService {
 
     public HttpEntity<?> addService(AddServiceDto addServiceDto, MultipartFile photo) {
         Services service = new Services();
-        service.setServices(addServiceDto.getServices());
+        service.setServices_ru(addServiceDto.getServices_ru());
+        service.setServices_en(addServiceDto.getServices_en());
         service.setPhoto(photoService.savePhoto(photo));
         try {
             serviceRepository.save(service);
@@ -48,7 +49,8 @@ public class ServiceService {
             return new ResponseEntity<>(new ApiResponse("Not found", false), HttpStatus.NOT_FOUND);
 
         Services services = optionalServices.get();
-        services.setServices(serviceDto.getServices());
+        services.setServices_ru(serviceDto.getServices_ru());
+        services.setServices_en(serviceDto.getServices_en());
         photoService.deletePhoto(services.getPhoto().getId());
 
         services.setPhoto(photoService.savePhoto(photo));

@@ -9,8 +9,11 @@ public interface ServiceProjection {
 
     UUID getServiceId();
 
-    @Value("#{@serviceRepository.getServicesByServiceId(target.serviceId)}")
-    List<String> getServices();
+    @Value("#{@serviceRepository.getServicesEnByServiceId(target.serviceId)}")
+    List<String> getServicesEn();
+
+    @Value("#{@serviceRepository.getServicesRuByServiceId(target.serviceId)}")
+    List<String> getServicesRu();
 
     String getOriginalName();
 

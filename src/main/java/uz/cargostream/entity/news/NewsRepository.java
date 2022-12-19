@@ -14,7 +14,8 @@ public interface NewsRepository extends JpaRepository<News, UUID> {
 
     @Query(nativeQuery = true,
             value = "select cast(n.id as varchar) as newsId,\n" +
-                    "       n.title               as title,\n" +
+                    "       n.title_ru               as titleRu,\n" +
+                    "       n.title_En               as titleEn,\n" +
                     "       p.original_name       as originalName,\n" +
                     "       p.url_name            as urlName\n" +
                     "from news n\n" +
@@ -23,7 +24,13 @@ public interface NewsRepository extends JpaRepository<News, UUID> {
 
 
     @Query(nativeQuery = true,
-            value = "select *\n" +
+            value = "select cast(n.id as varchar)   as newsId,\n" +
+                    "       n.title_ru              as titleRu,\n" +
+                    "       n.title_en              as titleEn,\n" +
+                    "       n.text_ru               as textRu,\n" +
+                    "       n.text_en               as textEn,\n" +
+                    "       p.original_name         as originalName,\n" +
+                    "       p.url_name              as urlName\n" +
                     "from news n\n" +
                     "         join photos p on n.photo_id = p.id\n" +
                     "where n.id = :newsId")

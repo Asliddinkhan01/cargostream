@@ -26,9 +26,9 @@ public class NewsController {
         return newsService.addNews(newsDto, photo);
     }
 
-    @GetMapping
-    public HttpEntity<?> getNewsById(@Valid @RequestBody NewsUuidDto newsUuidDto) {
-        return newsService.getNewsById(newsUuidDto.getNewsId());
+    @GetMapping("/{newsId}")
+    public HttpEntity<?> getNewsById(@PathVariable UUID newsId) {
+        return newsService.getNewsById(newsId);
     }
 
     @DeleteMapping

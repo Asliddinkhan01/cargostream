@@ -15,10 +15,18 @@ public class NewsDto {
 
     @NotNull(message = "Required field")
     @NotBlank(message = "Title cannot be blank")
-    private String title;
+    private String title_ru;
 
     @NotNull(message = "Required field")
     @NotBlank(message = "Title cannot be blank")
-    private String text;
+    private String title_en;
+
+    @NotNull(message = "Required field")
+    @NotBlank(message = "Title cannot be blank")
+    private String text_ru;
+
+    @NotNull(message = "Required field")
+    @NotBlank(message = "Title cannot be blank")
+    private String text_en;
 
 }

@@ -18,10 +18,16 @@ import javax.persistence.OneToOne;
 public class News extends EntityClass {
 
     @Column(nullable = false)
-    private String title;
+    private String title_ru;
 
     @Column(nullable = false)
-    private String text;
+    private String title_en;
+
+    @Column(nullable = false)
+    private String text_ru;
+
+    @Column(nullable = false)
+    private String text_en;
 
     @OneToOne
     private Photo photo;

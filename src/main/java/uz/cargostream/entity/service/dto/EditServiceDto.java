@@ -21,5 +21,9 @@ public class EditServiceDto {
 
     @NotNull(message = "Field cannot be null")
     @NotBlank(message = "Field cannot be blank")
-    private List<String> services;
+    private List<String> services_ru;
+
+    @NotNull(message = "Field cannot be null")
+    @NotBlank(message = "Field cannot be blank")
+    private List<String> services_en;
 }

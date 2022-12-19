@@ -9,5 +9,7 @@ public interface PartnerProjection {
 
     String getSiteLink();
 
-    PhotoProjection getPhoto();
+    String getOriginalName();
+
+    String getUrlName();
 }

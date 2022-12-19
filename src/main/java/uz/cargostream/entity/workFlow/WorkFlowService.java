@@ -22,8 +22,10 @@ public class WorkFlowService {
     public HttpEntity<?> addWorkFlow(AddWorkflowDto workFlow) {
         WorkFlow newWorkFlow = new WorkFlow();
         newWorkFlow.setOrderNumber(workFlow.getOrderNumber());
-        newWorkFlow.setTitle(workFlow.getTitle());
-        newWorkFlow.setDescription(workFlow.getDescription());
+        newWorkFlow.setTitle_ru(workFlow.getTitle_ru());
+        newWorkFlow.setDescription_ru(workFlow.getDescription_ru());
+        newWorkFlow.setTitle_en(workFlow.getTitle_en());
+        newWorkFlow.setDescription_en(workFlow.getDescription_en());
         try {
             workFlowRepository.save(newWorkFlow);
             return new ResponseEntity<>(new ApiResponse("Successfully added", true, newWorkFlow), HttpStatus.CREATED);
@@ -38,8 +40,10 @@ public class WorkFlowService {
         if (byId.isPresent()) {
             WorkFlow editWorkFlow = byId.get();
             editWorkFlow.setOrderNumber(workFlow.getOrderNumber());
-            editWorkFlow.setTitle(workFlow.getTitle());
-            editWorkFlow.setDescription(workFlow.getDescription());
+            editWorkFlow.setTitle_ru(workFlow.getTitle_ru());
+            editWorkFlow.setDescription_ru(workFlow.getDescription_ru());
+            editWorkFlow.setTitle_en(workFlow.getTitle_en());
+            editWorkFlow.setDescription_en(workFlow.getDescription_en());
             try {
                 workFlowRepository.save(editWorkFlow);
                 return new ResponseEntity<>(new ApiResponse("Successfully edited", true), HttpStatus.OK);

@@ -19,7 +19,10 @@ import java.util.List;
 public class Services extends EntityClass {
 
     @ElementCollection(fetch = FetchType.LAZY)
-    private List<String> services;
+    private List<String> services_ru;
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    private List<String> services_en;
 
 
     @OneToOne

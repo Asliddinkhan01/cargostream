@@ -10,10 +10,16 @@ import java.util.UUID;
 public interface ServiceRepository extends JpaRepository<Services, UUID> {
 
     @Query(nativeQuery = true,
-            value = "select ss.services as services\n" +
-                    "from services_services ss\n" +
-                    "where ss.services_id = :serviceId")
-    List<String> getServicesByServiceId(UUID serviceId);
+            value = "select s.services_en as serviceEn\n" +
+                    "from services_services_en s\n" +
+                    "where s.services_id = :serviceId")
+    List<String> getServicesEnByServiceId(UUID serviceId);
+
+    @Query(nativeQuery = true,
+            value = "select s.services_ru as serviceRu\n" +
+                    "from services_services_ru s\n" +
+                    "where s.services_id = :serviceId")
+    List<String> getServicesRuByServiceId(UUID serviceId);
 
     @Query(nativeQuery = true,
             value = "select cast(s.id as varchar) as serviceId,\n" +

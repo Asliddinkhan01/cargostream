@@ -20,10 +20,18 @@ public class AddWorkflowDto {
 
     @NotNull(message = "Field cannot be null")
     @NotBlank(message = "Field cannot be blank")
-    private String title;
+    private String title_ru;
 
     @NotNull(message = "Field cannot be null")
     @NotBlank(message = "Field cannot be blank")
-    private String description;
+    private String title_en;
+
+    @NotNull(message = "Field cannot be null")
+    @NotBlank(message = "Field cannot be blank")
+    private String description_ru;
+
+    @NotNull(message = "Field cannot be null")
+    @NotBlank(message = "Field cannot be blank")
+    private String description_en;
 
 }

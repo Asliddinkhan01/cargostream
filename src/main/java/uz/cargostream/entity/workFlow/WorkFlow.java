@@ -18,8 +18,14 @@ public class WorkFlow extends EntityClass {
     private String orderNumber;
 
     @Column(nullable = false)
-    private String title;
+    private String title_ru;
 
     @Column(nullable = false)
-    private String description;
+    private String title_en;
+
+    @Column(nullable = false)
+    private String description_ru;
+
+    @Column(nullable = false)
+    private String description_en;
 }

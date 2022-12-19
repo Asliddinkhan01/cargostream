@@ -6,7 +6,8 @@ public interface NewsProjectionGetAll {
 
     UUID getNewsId();
 
-    String getTitle();
+    String getTitleRu();
+    String getTitleEn();
 
     String getOriginalName();
 

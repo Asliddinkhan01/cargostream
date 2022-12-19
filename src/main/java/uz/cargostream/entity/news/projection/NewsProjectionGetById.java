@@ -1,15 +1,19 @@
 package uz.cargostream.entity.news.projection;
 
-import uz.cargostream.entity.photo.projection.PhotoProjection;
-
 import java.util.UUID;
 
 public interface NewsProjectionGetById {
     UUID getNewsId();
 
-    String getTitle();
+    String getTitleRu();
 
-    String getText();
+    String getTitleEn();
 
-    PhotoProjection getPhoto();
+    String getTextRu();
+
+    String getTextEn();
+
+    String getOriginalName();
+
+    String getUrlName();
 }

@@ -29,8 +29,10 @@ public class NewsService {
 
     public HttpEntity<?> addNews(NewsDto newsDto, MultipartFile photo) {
         News news = new News();
-        news.setText(newsDto.getText());
-        news.setTitle(newsDto.getTitle());
+        news.setText_ru(newsDto.getText_ru());
+        news.setTitle_ru(newsDto.getTitle_ru());
+        news.setText_en(newsDto.getText_en());
+        news.setTitle_en(newsDto.getTitle_en());
         news.setPhoto(photoService.savePhoto(photo));
         try {
             newsRepository.save(news);
@@ -42,8 +44,10 @@ public class NewsService {
 
     public HttpEntity<?> getNewsById(UUID uuid) {
         Optional<NewsProjectionGetById> byId = newsRepository.getNewsById(uuid);
-        return byId.map(newsProjectionGetById -> new ResponseEntity<>(new ApiResponse("Successfully", true, newsProjectionGetById), HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(new ApiResponse("News not found", false), HttpStatus.NOT_FOUND));
+        if (byId.isEmpty()) {
+            return new ResponseEntity<>(new ApiResponse("News not found", false), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(new ApiResponse("Success", true, byId), HttpStatus.OK);
     }
 
     public HttpEntity<?> getAllNews() {
@@ -70,8 +74,11 @@ public class NewsService {
         if (byId.isEmpty())
             return new ResponseEntity<>(new ApiResponse("Not found", false), HttpStatus.NOT_FOUND);
         News news = byId.get();
-        news.setTitle(newsEditDto.getTitle());
-        news.setText(newsEditDto.getText());
+        news.setTitle_ru(newsEditDto.getTitle_ru());
+        news.setText_ru(newsEditDto.getText_ru());
+
+        news.setTitle_en(newsEditDto.getTitle_en());
+        news.setText_en(newsEditDto.getText_en());
         photoService.deletePhoto(news.getPhoto().getId());
         news.setPhoto(photoService.savePhoto(photo));
         try {

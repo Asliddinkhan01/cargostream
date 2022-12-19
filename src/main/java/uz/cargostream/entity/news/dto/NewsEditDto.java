@@ -19,9 +19,17 @@ public class NewsEditDto {
 
     @NotNull(message = "Field cannot be null")
     @NotBlank(message = "Field cannot be blank")
-    private String title;
+    private String title_ru;
 
     @NotNull(message = "Field cannot be null")
     @NotBlank(message = "Field cannot be blank")
-    private String text;
+    private String title_en;
+
+    @NotNull(message = "Field cannot be null")
+    @NotBlank(message = "Field cannot be blank")
+    private String text_ru;
+
+    @NotNull(message = "Field cannot be null")
+    @NotBlank(message = "Field cannot be blank")
+    private String text_en;
 }
