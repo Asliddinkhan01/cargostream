@@ -18,7 +18,10 @@ import javax.persistence.OneToOne;
 public class AboutCompany extends EntityClass {
 
     @Column(nullable = false)
-    private String text;
+    private String text_ru;
+
+    @Column(nullable = false)
+    private String text_en;
 
     @OneToOne
     private Photo photo;
