@@ -30,7 +30,8 @@ public class AboutCompanyService {
     public HttpEntity<?> addAboutCompany(AddAboutCompanyDto dto, MultipartFile photo) {
         try {
             AboutCompany aboutCompany = new AboutCompany();
-            aboutCompany.setText(dto.getText());
+            aboutCompany.setText_ru(dto.getText_ru());
+            aboutCompany.setText_en(dto.getText_en());
             aboutCompany.setPhoto(photoService.savePhoto(photo));
             aboutCompanyRepository.save(aboutCompany);
             return new ResponseEntity<>(new ApiResponse("Success", true), HttpStatus.CREATED);
@@ -47,7 +48,8 @@ public class AboutCompanyService {
             return new ResponseEntity<>(new ApiResponse("Not found", false), HttpStatus.NOT_FOUND);
 
         AboutCompany aboutCompany = optionalAboutCompany.get();
-        aboutCompany.setText(dto.getText());
+        aboutCompany.setText_en(dto.getText_en());
+        aboutCompany.setText_ru(dto.getText_ru());
 
         if (photo != null) {
             photoService.deletePhoto(aboutCompany.getId());

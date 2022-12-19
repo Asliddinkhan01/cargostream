@@ -20,5 +20,9 @@ public class EditAboutCompanyDto {
 
     @NotNull(message = "Field cannot be null")
     @NotBlank(message = "Field cannot be blank")
-    private String text;
+    private String text_ru;
+
+    @NotNull(message = "Field cannot be null")
+    @NotBlank(message = "Field cannot be blank")
+    private String text_en;
 }
