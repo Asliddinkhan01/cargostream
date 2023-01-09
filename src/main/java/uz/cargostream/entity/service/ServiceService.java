@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uz.cargostream.common.ApiResponse;
 import uz.cargostream.entity.photo.PhotoService;
-import uz.cargostream.entity.service.dto.AddServiceDto;
-import uz.cargostream.entity.service.dto.EditServiceDto;
+import uz.cargostream.entity.service.dto.ServiceDto;
 import uz.cargostream.entity.service.projection.ServiceProjection;
 
 import java.util.List;
@@ -29,10 +28,12 @@ public class ServiceService {
         return new ResponseEntity<>(new ApiResponse("Success", true, allServices), HttpStatus.OK);
     }
 
-    public HttpEntity<?> addService(AddServiceDto addServiceDto, MultipartFile photo) {
+    public HttpEntity<?> addService(ServiceDto serviceDto, MultipartFile photo) {
         Services service = new Services();
-        service.setServices_ru(addServiceDto.getServices_ru());
-        service.setServices_en(addServiceDto.getServices_en());
+        service.setTitle_ru(serviceDto.getTitle_ru());
+        service.setTitle_en(serviceDto.getTitle_en());
+        service.setDescription_ru(serviceDto.getDescription_ru());
+        service.setDescription_en(serviceDto.getDescription_en());
         service.setPhoto(photoService.savePhoto(photo));
         try {
             serviceRepository.save(service);
@@ -42,15 +43,17 @@ public class ServiceService {
         }
     }
 
-    public HttpEntity<?> editContact(EditServiceDto serviceDto, MultipartFile photo) {
+    public HttpEntity<?> editContact(ServiceDto serviceDto, MultipartFile photo) {
         Optional<Services> optionalServices = serviceRepository.findById(serviceDto.getServicesId());
 
         if (optionalServices.isEmpty())
             return new ResponseEntity<>(new ApiResponse("Not found", false), HttpStatus.NOT_FOUND);
 
         Services services = optionalServices.get();
-        services.setServices_ru(serviceDto.getServices_ru());
-        services.setServices_en(serviceDto.getServices_en());
+        services.setTitle_ru(serviceDto.getTitle_ru());
+        services.setTitle_en(serviceDto.getTitle_en());
+        services.setDescription_ru(serviceDto.getDescription_ru());
+        services.setDescription_en(serviceDto.getDescription_en());
         photoService.deletePhoto(services.getPhoto().getId());
 
         services.setPhoto(photoService.savePhoto(photo));

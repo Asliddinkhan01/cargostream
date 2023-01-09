@@ -36,4 +36,9 @@ public class WorkFlowController {
     public HttpEntity<?> editWorkFlow(@Valid @RequestBody EditWorkflow editWorkflow) {
         return workFlowService.editWorkFlow(editWorkflow.getWorkflowId(), editWorkflow);
     }
+
+    @GetMapping("/{workFlowId}")
+    private HttpEntity<?> getWorkFlow(@PathVariable UUID workFlowId){
+        return workFlowService.getWorkflowById(workFlowId);
+    }
 }

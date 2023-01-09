@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import uz.cargostream.entity.photo.Photo;
 import uz.cargostream.entity.template.EntityClass;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @AllArgsConstructor
@@ -18,12 +15,17 @@ import java.util.List;
 @Entity(name = "services")
 public class Services extends EntityClass {
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    private List<String> services_ru;
+    @Column(nullable = false)
+    private String title_ru;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    private List<String> services_en;
+    @Column(nullable = false)
+    private String description_ru;
 
+    @Column(nullable = false)
+    private String title_en;
+
+    @Column(nullable = false)
+    private String description_en;
 
     @OneToOne
     private Photo photo;

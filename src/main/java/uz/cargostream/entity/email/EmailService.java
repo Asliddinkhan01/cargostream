@@ -26,8 +26,8 @@ public class EmailService {
         message.setTo(RECEIVER_EMAIl);
         message.setSubject("New Order");
 
-        String text = "Customer name: " + orderDto.getName() + "\n" +
-                "Phone number: " + orderDto.getPhoneNumber() + "\n" +
+        String text = "Customer name: " + orderDto.getName() + "\n\n" +
+                "Phone number: " + orderDto.getPhoneNumber() + "\n\n" +
                 "Message: " + orderDto.getMessage();
         message.setText(text);
         javaMailSender.send(message);

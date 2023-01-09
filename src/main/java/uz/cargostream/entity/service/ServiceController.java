@@ -5,11 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import uz.cargostream.entity.service.dto.AddServiceDto;
-import uz.cargostream.entity.service.dto.EditServiceDto;
+import uz.cargostream.entity.service.dto.ServiceDto;
 
 import javax.validation.Valid;
-import java.net.http.HttpClient;
 import java.util.UUID;
 
 @RestController
@@ -21,7 +19,7 @@ public class ServiceController {
 
     @PostMapping
     public HttpEntity<?> addServices(
-            @RequestPart("serviceDto") @Valid AddServiceDto serviceDto,
+            @RequestPart("serviceDto") @Valid ServiceDto serviceDto,
             @RequestPart("photo") MultipartFile photo) {
         return serviceService.addService(serviceDto, photo);
     }
@@ -38,7 +36,7 @@ public class ServiceController {
 
     @PutMapping
     public HttpEntity<?> editServices(
-            @RequestPart("serviceDto") @Valid EditServiceDto serviceDto,
+            @RequestPart("serviceDto") @Valid ServiceDto serviceDto,
             @RequestPart("photo") MultipartFile photo) {
         return serviceService.editContact(serviceDto, photo);
     }

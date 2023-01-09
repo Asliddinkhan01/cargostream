@@ -69,4 +69,12 @@ public class WorkFlowService {
         List<WorkFlow> all = workFlowRepository.findAll();
         return new ResponseEntity<>(new ApiResponse("Success", true, all), HttpStatus.OK);
     }
+
+    public HttpEntity<?> getWorkflowById(UUID workFlowId) {
+        Optional<WorkFlow> byId = workFlowRepository.findById(workFlowId);
+        if (byId.isEmpty()) {
+            return new ResponseEntity<>(new ApiResponse("Error", false), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(new ApiResponse("Success", true, byId), HttpStatus.OK);
+    }
 }

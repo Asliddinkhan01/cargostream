@@ -6,6 +6,6 @@ public interface AppConstants {
 
     String PATH = "src/main/resources/images";
 
-    String RECEIVER_EMAIl = "iymonbek.geym@gmail.com";
+    String RECEIVER_EMAIl = "pulatov.talat@gmail.com";
     String SENDER_EMAIl = "csmailsenderuz@gmail.com";
 }

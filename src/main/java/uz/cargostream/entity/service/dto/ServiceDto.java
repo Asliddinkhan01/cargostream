@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class EditServiceDto {
+public class ServiceDto {
 
     @NotNull(message = "Field cannot be null")
     @NotBlank(message = "Field cannot be blank")
@@ -21,9 +20,17 @@ public class EditServiceDto {
 
     @NotNull(message = "Field cannot be null")
     @NotBlank(message = "Field cannot be blank")
-    private List<String> services_ru;
+    private String title_ru;
 
     @NotNull(message = "Field cannot be null")
     @NotBlank(message = "Field cannot be blank")
-    private List<String> services_en;
+    private String description_ru;
+
+    @NotNull(message = "Field cannot be null")
+    @NotBlank(message = "Field cannot be blank")
+    private String title_en;
+
+    @NotNull(message = "Field cannot be null")
+    @NotBlank(message = "Field cannot be blank")
+    private String description_en;
 }

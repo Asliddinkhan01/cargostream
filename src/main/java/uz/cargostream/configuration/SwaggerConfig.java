@@ -13,11 +13,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @Configuration
 public class SwaggerConfig {
-    /**
-     * Method to set paths to be included through swagger
-     *
-     * @return Docket
-     */
+
+//    http://localhost:8082/swagger-ui/#/
+
     @Bean
     public Docket configApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -28,11 +26,6 @@ public class SwaggerConfig {
     }
 
 
-    /**
-     * Method to set swagger info
-     *
-     * @return ApiInfoBuilder
-     */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("").description("").version("1.0").build();
     }

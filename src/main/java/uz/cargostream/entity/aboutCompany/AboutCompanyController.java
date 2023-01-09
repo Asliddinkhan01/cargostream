@@ -25,8 +25,8 @@ public class AboutCompanyController {
 
     @PostMapping()
     public HttpEntity<?> addAboutCompany(
-            @RequestPart("dto") @Valid AddAboutCompanyDto dto,
-            @RequestPart("photo") @Valid MultipartFile photo
+            @RequestPart("dto")  AddAboutCompanyDto dto,
+            @RequestPart("photo") MultipartFile photo
     ) {
         return aboutCompanyService.addAboutCompany(dto, photo);
     }
